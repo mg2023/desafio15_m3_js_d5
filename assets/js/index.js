@@ -1,8 +1,8 @@
-const listaDeTareas = document.querySelector('#tareas')
+const listaDeTareas = document.querySelector('#listaDeTareas')
 const tareaInput = document.querySelector('#nuevaTarea')
 const btnAgregar = document.querySelector('#agregarTarea')
 const cuentaTareas = document.querySelector('#cuenta-tareas')
-const idTareasTerminadas = document.querySelector('#tareas-terminadas')
+const idTareasTerminadas = document.querySelector('#tareas-finalizadas')
 
 const tareas = [
   { id: 1, nombre: 'Pasear al perro', completado: 'Finalizar', colorBotonCompletado: 'btn-primary' },
@@ -17,7 +17,7 @@ btnAgregar.addEventListener('click', () => {
   console.log('entra')
   /* Agregamos el invitado al arreglo */
   const nombreTarea = tareaInput.value
-  tareas.push({ id: Date.now(), nombre: nombreTarea, completado: 'Finalizar', colorBotonCompletado: 'btn-primary'})
+  tareas.push({ id: Date.now(), nombre: nombreTarea, completado: 'Finalizar', colorBotonCompletado: 'btn-primary' })
   tareaInput.value = ''
   /* Actualizamos la información en el HTML */
   renderTareas(tareas)
