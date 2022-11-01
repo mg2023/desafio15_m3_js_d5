@@ -16,7 +16,7 @@ renderTareas(tareas)
 idBtnAgregar.addEventListener('click', () => {
   console.log(idTareaInput.value)
   if (idTareaInput.value !== '') {
-    /* Agregamos el invitado al arreglo */
+    /* Agregamos la nueva tarea al arreglo */
     const nombreTarea = idTareaInput.value
     tareas.push({ id: Date.now(), nombre: nombreTarea, completado: 'Finalizar', colorBotonCompletado: 'btn-primary' })
     idTareaInput.value = ''
