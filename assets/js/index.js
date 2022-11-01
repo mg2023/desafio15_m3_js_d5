@@ -10,9 +10,9 @@ const tareas = [
   { id: Date.now() + 3, nombre: 'Estudiar python', completado: 'Finalizar', colorBotonCompletado: 'btn-primary' }
 ]
 
+// Estado inicial
 renderTareas(tareas)
 
-// const tareas = []
 idBtnAgregar.addEventListener('click', () => {
   console.log(idTareaInput.value)
   if (idTareaInput.value !== '') {
@@ -49,7 +49,7 @@ function finalizarTarea (id) {
   renderTareas(tareas)
 }
 
-/* Actualizamos la información en el HTML */
+/* Se actualiza la información en el HTML */
 function renderTareas (objetoTareas) {
   let html = ''
   let contadorTareasFinalizadas = 0
