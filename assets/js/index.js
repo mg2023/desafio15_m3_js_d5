@@ -1,28 +1,33 @@
-const listaDeTareas = document.querySelector('#listaDeTareas')
-const tareaInput = document.querySelector('#nuevaTarea')
-const btnAgregar = document.querySelector('#agregarTarea')
-const cuentaTareas = document.querySelector('#cuenta-tareas')
-const idTareasTerminadas = document.querySelector('#tareas-finalizadas')
+const idListaDeTareas = document.querySelector('#listaDeTareas')
+const idTareaInput = document.querySelector('#tareaInput')
+const idBtnAgregar = document.querySelector('#btnAgregar')
+const idCuentaTareas = document.querySelector('#cuentaTareas')
+const idTareasTerminadas = document.querySelector('#TareasTerminadas')
 
 const tareas = [
-  { id: 1, nombre: 'Pasear al perro', completado: 'Finalizar', colorBotonCompletado: 'btn-primary' },
-  { id: 2, nombre: 'Estudiar JS', completado: 'Finalizar', colorBotonCompletado: 'btn-primary' },
-  { id: 3, nombre: 'Estudiar python', completado: 'Finalizar', colorBotonCompletado: 'btn-primary' }
+  { id: Date.now() + 1, nombre: 'Pasear al perro', completado: 'Finalizar', colorBotonCompletado: 'btn-primary' },
+  { id: Date.now() + 2, nombre: 'Estudiar JS', completado: 'Finalizar', colorBotonCompletado: 'btn-primary' },
+  { id: Date.now() + 3, nombre: 'Estudiar python', completado: 'Finalizar', colorBotonCompletado: 'btn-primary' }
 ]
 
 renderTareas(tareas)
 
 // const tareas = []
-btnAgregar.addEventListener('click', () => {
-  console.log('entra')
-  /* Agregamos el invitado al arreglo */
-  const nombreTarea = tareaInput.value
-  tareas.push({ id: Date.now(), nombre: nombreTarea, completado: 'Finalizar', colorBotonCompletado: 'btn-primary' })
-  tareaInput.value = ''
-  /* Actualizamos la información en el HTML */
-  renderTareas(tareas)
+idBtnAgregar.addEventListener('click', () => {
+  console.log(idTareaInput.value)
+  if (idTareaInput.value !== '') {
+    /* Agregamos el invitado al arreglo */
+    const nombreTarea = idTareaInput.value
+    tareas.push({ id: Date.now(), nombre: nombreTarea, completado: 'Finalizar', colorBotonCompletado: 'btn-primary' })
+    idTareaInput.value = ''
+    /* Actualizamos la información en el HTML */
+    renderTareas(tareas)
+  } else {
+    alert('Ingrese un nombre a nueva tarea')
+  }
 })
 
+// eslint-disable-next-line no-unused-vars
 function borrar (id) {
   const index = tareas.findIndex((ele) => ele.id === id) /* 2.1 */
   console.log(index)
@@ -30,11 +35,17 @@ function borrar (id) {
   renderTareas(tareas)
 }
 
+// eslint-disable-next-line no-unused-vars
 function finalizarTarea (id) {
   const index = tareas.findIndex((ele) => ele.id === id) /* 2.1 */
   console.log(index)
-  tareas[index].completado = 'Finalizada'
-  tareas[index].colorBotonCompletado = 'btn-success'
+  if (tareas[index].completado === 'Finalizar') {
+    tareas[index].completado = 'Finalizada'
+    tareas[index].colorBotonCompletado = 'btn-success'
+  } else if (tareas[index].completado === 'Finalizada') {
+    tareas[index].completado = 'Finalizar'
+    tareas[index].colorBotonCompletado = 'btn-primary'
+  }
   renderTareas(tareas)
 }
 
@@ -59,8 +70,8 @@ function renderTareas (objetoTareas) {
               </li>
             </ul>`
   }
-  listaDeTareas.innerHTML = html
-  cuentaTareas.innerHTML = objetoTareas.length
+  idListaDeTareas.innerHTML = html
+  idCuentaTareas.innerHTML = objetoTareas.length
   idTareasTerminadas.innerHTML = contadorTareasFinalizadas
   console.log(tareas)
 }
